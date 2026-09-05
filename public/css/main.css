@@ -1,30 +1,206 @@
-html, body {
-    background-color: lightblue;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
+:root {
+    --ink: #183b3f;
+    --muted: #526568;
+    --teal: #087f8c;
+    --teal-dark: #075b63;
+    --coral: #d96c4d;
+    --surface: #ffffff;
+    --background: #eef7f5;
+    --border: #c9dfdc;
+    --shadow: 0 12px 30px rgba(24, 59, 63, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-width: 320px;
+    scroll-behavior: smooth;
 }
 
 body {
-    nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    color: var(--ink);
+    background:
+        radial-gradient(circle at top right, rgba(217, 108, 77, 0.12), transparent 28rem),
+        var(--background);
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.6;
+}
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
+nav {
+    background: var(--ink);
+    border-bottom: 4px solid var(--coral);
+}
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+nav ul {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.8rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 1.5rem;
+    list-style: none;
+}
 
-            &:hover {
-                color: #0066cc;
-            }
-        }
+nav li {
+    margin: 0;
+}
+
+nav a {
+    display: block;
+    padding: 0.55rem 0.75rem;
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0.35rem;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    color: var(--ink);
+    background: #ffffff;
+}
+
+main {
+    width: min(100% - 2rem, 1100px);
+    margin: 3rem auto;
+    padding: clamp(1.5rem, 4vw, 3.5rem);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow);
+}
+
+h1,
+h2 {
+    margin-top: 0;
+    color: var(--ink);
+    line-height: 1.15;
+}
+
+h1 {
+    margin-bottom: 1.25rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 0;
+}
+
+h2 {
+    margin-top: 2rem;
+    font-size: clamp(1.35rem, 3vw, 2rem);
+}
+
+p {
+    max-width: 70ch;
+    color: var(--muted);
+    font-size: 1.08rem;
+}
+
+main > p {
+    margin-bottom: 2rem;
+}
+
+main ul {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+main li {
+    padding: 1.2rem 1.35rem;
+    color: var(--ink);
+    background: #f5fbfa;
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--teal);
+    border-radius: 0.5rem;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+main li strong {
+    color: var(--teal-dark);
+}
+
+main li img {
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-right: 1rem;
+    padding: 0.35rem;
+    float: left;
+    object-fit: contain;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 0.4rem;
+}
+
+.main-logo {
+    display: block;
+    width: min(100%, 520px);
+    height: auto;
+    margin: 2.5rem auto 0;
+    border-radius: 0.6rem;
+}
+
+footer {
+    margin-top: auto;
+    padding: 1.5rem 1rem;
+    color: #dcebea;
+    background: var(--ink);
+    text-align: center;
+}
+
+footer p {
+    max-width: none;
+    margin: 0;
+    color: inherit;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 0.9rem;
+}
+
+:focus-visible {
+    outline: 3px solid var(--coral);
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    nav ul {
+        justify-content: center;
+        gap: 0.25rem;
     }
-}              
+
+    nav a {
+        padding: 0.5rem;
+        font-size: 0.88rem;
+    }
+
+    main {
+        width: min(100% - 1rem, 1100px);
+        margin: 1rem auto;
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+    }
+
+    main li img {
+        width: 3.75rem;
+        height: 3.75rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    nav a {
+        transition: none;
+    }
+}
