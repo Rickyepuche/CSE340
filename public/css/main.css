@@ -104,6 +104,20 @@ p {
     font-size: 1.08rem;
 }
 
+main a {
+    color: var(--teal-dark);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.18em;
+    transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+main a:hover,
+main a:focus-visible {
+    color: var(--coral);
+    text-decoration-color: currentColor;
+}
+
 main > p {
     margin-bottom: 2rem;
 }
@@ -142,15 +156,95 @@ main li img {
     border-radius: 0.4rem;
 }
  
-main li a {
+main li a{
     color: var(--teal-dark);
     text-decoration: none;
     transition: transform 0.2s ease;
 }
 
+
 main li a:hover,
 main li a:focus-visible {
     transform: scale(1.1);
+}
+
+.category-tags {
+    margin: 0 0 2.5rem;
+    padding: 1rem 1.25rem;
+    background: #f5fbfa;
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--coral);
+    border-radius: 0.6rem;
+    box-shadow: 0 8px 22px rgba(24, 59, 63, 0.08);
+}
+
+.category-tags h3 {
+    margin: 0 0 0.7rem;
+    color: var(--ink);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.category-tags ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.category-tags li {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+.category-tags li a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    padding: 0.35rem 0.85rem;
+    color: var(--teal-dark);
+    background: #e5f3f0;
+    border: 1px solid #a8d1cc;
+    border-radius: 999px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 160ms ease, border-color 160ms ease,
+        color 160ms ease, transform 160ms ease;
+}
+
+.category-tags li a::before {
+    width: 0.45rem;
+    height: 0.45rem;
+    margin-right: 0.5rem;
+    content: "";
+    background: var(--coral);
+    border-radius: 50%;
+}
+
+.category-tags li a:hover,
+.category-tags li a:focus-visible {
+    color: #ffffff;
+    background: var(--teal);
+    border-color: var(--teal);
+    transform: translateY(-2px);
+}
+
+.category-tags li a:hover,
+.category-tags li a:focus-visible {
+    text-decoration-color: transparent;
+}
+
+.category-tags p {
+    margin: 0;
+    font-size: 1rem;
 }
 
 .main-logo {
@@ -212,6 +306,14 @@ footer p {
     }
 
     nav a {
+        transition: none;
+    }
+
+    .category-tags li a {
+        transition: none;
+    }
+
+    main a {
         transition: none;
     }
 }

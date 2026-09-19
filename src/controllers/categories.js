@@ -1,4 +1,6 @@
 import { getAllCategories } from '../models/categories.js';
+import { getCategory } from '../models/categories.js';
+import { getProjectsByCategory } from '../models/categories.js';
 
 const categoriesPage = async (req, res) => {
     const categories = await getAllCategories();
@@ -7,4 +9,13 @@ const categoriesPage = async (req, res) => {
     res.render('categories', { title, categories }); 
 }
 
-export { categoriesPage };
+const showCategoryDetails = async (req, res) => {
+    const categoryId = Number(req.params.id)
+    const categoryData = await getCategory(categoryId);
+    const categoryProjects = await getProjectsByCategory(categoryId);
+    const title = "Category Details";
+
+    res.render('category', { categoryData, categoryProjects, title });
+}
+
+export { categoriesPage, showCategoryDetails };
