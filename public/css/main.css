@@ -168,6 +168,106 @@ main li a:focus-visible {
     transform: scale(1.1);
 }
 
+.organization-form {
+    max-width: 42rem;
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.form-group {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: var(--ink);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem 0.9rem;
+    color: var(--ink);
+    background: #f5fbfa;
+    border: 1px solid var(--border);
+    border-radius: 0.55rem;
+    font: inherit;
+    transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.form-control:focus {
+    background: #ffffff;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 4px rgba(8, 127, 140, 0.12);
+    outline: none;
+}
+
+textarea.form-control {
+    min-height: 9rem;
+    resize: vertical;
+}
+
+.primary-button {
+    align-self: start;
+    padding: 0.8rem 1.4rem;
+    color: #ffffff;
+    background: var(--teal);
+    border: 1px solid var(--teal);
+    border-radius: 999px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 0.96rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.primary-button:hover,
+.primary-button:focus-visible {
+    background: var(--teal-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(8, 127, 140, 0.2);
+}
+
+.new-org-link {
+    margin-top: 1.5rem;
+}
+
+.new-org-link a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.1rem;
+    color: var(--teal-dark);
+    background: #e5f3f0;
+    border: 1px solid #a8d1cc;
+    border-radius: 999px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.new-org-link a::before {
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    margin-right: 0.6rem;
+    content: "";
+    background: var(--coral);
+    border-radius: 50%;
+}
+
+.new-org-link a:hover,
+.new-org-link a:focus-visible {
+    color: #ffffff;
+    background: var(--teal);
+    border-color: var(--teal);
+    transform: translateY(-2px);
+}
+
 .category-tags {
     margin: 0 0 2.5rem;
     padding: 1rem 1.25rem;
