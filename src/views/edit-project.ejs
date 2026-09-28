@@ -1,0 +1,80 @@
+<%- include('partials/header') %>
+<main>
+    <h1><%= title %></h1>
+
+ <form action="/edit-project/<%= projectDetails.project_id %>" method="POST" class="project-form">
+    <div class="form-group">
+      <label for="title">Project Title</label>
+      <input
+        class="form-control"
+        value="<%= projectDetails.title %>"
+        type="text"
+        id="title"
+        name="title"
+        maxlength="150"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        maxlength="500"
+        required
+      ><%= projectDetails.description %></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input
+        class="form-control"
+        value="<%= projectDetails.location %>"
+        type="text"
+        id="location"
+        name="location"
+        maxlength="255"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input
+        class="form-control"
+        type="date"
+        value="<%= projectDetails.project_date %>"
+        id="date"
+        name="date"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="organizationId">Organization</label>
+      <select
+        class="form-control"
+        id="organizationId"
+        name="organizationId"
+        required
+      >
+        <option value="">Select an organization</option>
+        
+        <% projectOrganizations.forEach(organization => { %>
+          <option
+            value="<%= organization.organization_id %>"
+            <%= Number(projectDetails.organization_id) === Number(organization.organization_id) ? 'selected' : '' %>
+          >
+            <%= organization.name %>
+          </option>
+        <% }); %>
+      </select>
+    </div>
+
+    <button class="primary-button" type="submit">Update Project</button>
+  </form>
+
+</main>
+<%- include('partials/footer') %>
