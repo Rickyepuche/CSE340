@@ -1,14 +1,11 @@
 import express from 'express';
 
-import { organizationsPage } from './controllers/organizations.js';
 import { homePage } from './controllers/index.js';
 import { categoriesPage, showCategoryDetails } from './controllers/categories.js';
-import { projectsPage } from './controllers/projects.js';
 import { errorsPage } from './controllers/errors.js';
-import { showOrganizationDetailsPage } from './controllers/organizations.js';
-import { showProjectDetailsPage } from './controllers/projects.js';
-import { showNewOrganizationForm } from './controllers/organizations.js';
-import { processNewOrganizationForm } from './controllers/organizations.js';
+import { showProjectDetailsPage, projectsPage } from './controllers/projects.js';
+import { organizationsPage, processNewOrganizationForm, showOrganizationDetailsPage, showNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
+
 
 const router = express.Router();
 
@@ -33,6 +30,13 @@ router.get('/test-error', errorsPage);
 router.get('/new-organization', showNewOrganizationForm);
 
 // Route to handle new organization form submission
-router.post('/new-organization', processNewOrganizationForm);
+router.post('/new-organization', organizationValidation, processNewOrganizationForm);
+
+//route to display the edit organization form
+router.get('/edit-organization/:id', showEditOrganizationForm);
+
+// Route to handle the edit organization form submission
+router.post('/edit-organization/:id', organizationValidation, processEditOrganizationForm);
+
 
 export default router;
