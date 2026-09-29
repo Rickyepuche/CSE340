@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+<main>
+    <h1><%= title %></h1>
+
+ <form action="/edit-category/<%= categoryData.category_id %>" method="POST" class="organization-form">
+    <div class="form-group">
+      <label for="categoryName">Category Name</label>
+      <input
+        value="<%= categoryData.category_name %>"
+        class="form-control"
+        type="text"
+        id="categoryName"
+        name="categoryName"
+        required
+        maxlength="150"
+      />
+    </div>
+    <button type="submit" class="primary-button">Update Category</button>
+  </form>
+
+</main>
+<%- include('partials/footer') %>
