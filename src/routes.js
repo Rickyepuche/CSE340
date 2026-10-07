@@ -3,9 +3,10 @@ import express from 'express';
 import { homePage } from './controllers/index.js';
 import { categoriesPage, showCategoryDetails, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, processNewCategoryForm, showEditCategoryForm, processEditCategoryForm, categoryValidation } from './controllers/categories.js';
 import { errorsPage } from './controllers/errors.js';
+import { showUserRegistrationForm, processUserRegistrationForm } from './controllers/users.js';
 import { showProjectDetailsPage, projectsPage, projectValidation, showNewProjectForm, processNewProjectForm, showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
 import { organizationsPage, processNewOrganizationForm, showOrganizationDetailsPage, showNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
-
+import { showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard } from './controllers/users.js';
 
 const router = express.Router();
 
@@ -65,5 +66,17 @@ router.get('/edit-category/:id', showEditCategoryForm);
 
 //Route to handle the edit category form submission
 router.post('/edit-category/:id', categoryValidation, processEditCategoryForm)
+
+// User registration routes
+router.get('/register', showUserRegistrationForm);
+router.post('/register', processUserRegistrationForm);
+
+// User login routes
+router.get('/login', showLoginForm);
+router.post('/login', processLoginForm);
+router.get('/logout', processLogout);
+
+// Protected dashboard route
+router.get('/dashboard', requireLogin, showDashboard);
 
 export default router;
