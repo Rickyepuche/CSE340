@@ -2,10 +2,11 @@
 <main>
     <h1><%= title %></h1>
 
-    <form action="/register" method="POST">
+    <form action="/register" method="POST" class="account-form">
         <div class="form-group">
             <label for="name">Name</label>
             <input
+                class="form-control"
                 type="text"
                 id="name"
                 name="name"
@@ -16,6 +17,7 @@
         <div class="form-group">
             <label for="email">Email (Username)</label>
             <input
+                class="form-control"
                 type="email"
                 id="email"
                 name="email"
@@ -26,6 +28,7 @@
         <div class="form-group">
             <label for="password">Password</label>
             <input
+                class="form-control"
                 type="password"
                 id="password"
                 name="password"
@@ -33,7 +36,7 @@
             />
         </div>
 
-        <button type="submit">Register</button>
+        <button class="primary-button" type="submit">Register</button>
     </form>
 
 </main>

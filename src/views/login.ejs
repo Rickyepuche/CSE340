@@ -2,10 +2,11 @@
     <main>
         <h1><%= title %></h1>
 
-        <form action="/login" method="POST">
+        <form action="/login" method="POST" class="account-form">
             <div class="form-group">
                 <label for="email">Email (Username)</label>
                 <input
+                    class="form-control"
                     type="email"
                     id="email"
                     name="email"
@@ -15,13 +16,14 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input
+                    class="form-control"
                     type="password"
                     id="password"
                     name="password"
                     required
                 />
             </div>
-            <button type="submit">Login</button>
+            <button class="primary-button" type="submit">Login</button>
         </form>
     </main>   
 

@@ -8,7 +8,8 @@
             <% }); %>
     </ul>   
     
-    <p class="new-org-link"><a href="/new-organization">Add a new organization</a></p>
-</main>
+    <% if (user && user.role_name === 'admin') { %>
+    <p class="new-service-link"><a href="/new-organization">Add New Organization</a></p>
+    <% } %>
 <%- include('partials/footer') %>
 

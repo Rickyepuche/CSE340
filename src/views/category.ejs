@@ -15,7 +15,9 @@
       <p>No service projects found.</p>
     <% } %>
 
-    <p class="new-org-link"><a href="/edit-category/<%= categoryData.category_id %>">Edit Category</a></p>
-</main>
+    <% if (user && user.role_name === 'admin') { %>
+      <p class="new-org-link"><a href="/edit-category/<%= categoryData.category_id %>">Edit Category</a></p>
+    <% } %>
+  </main>
 
 <%- include('partials/footer') %>

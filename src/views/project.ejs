@@ -30,7 +30,9 @@
   </p>
   <p class="new-org-link"><a href="/assign-categories/<%= projectDetails.project_id %>">Assign Categories</a></p>
 
-  <p class="new-org-link"><a href="/edit-project/<%= projectDetails.project_id %>">Edit Project</a></p>
-</main>
+  <% if (user && user.role_name === 'admin') { %>
+    <p class="new-org-link"><a href="/edit-project/<%= projectDetails.project_id %>">Edit Project</a></p>
+  <% } %>
+  </main>
 
 <%- include('partials/footer') %>

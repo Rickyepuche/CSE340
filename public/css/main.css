@@ -168,6 +168,59 @@ main li a:focus-visible {
     transform: scale(1.1);
 }
 
+.users-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.user-box {
+    min-width: 0;
+    padding: 1.25rem 1.4rem;
+    background: #f5fbfa;
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--teal);
+    border-radius: 0.6rem;
+    box-shadow: 0 5px 14px rgba(24, 59, 63, 0.07);
+    font-family: "Segoe UI", Arial, sans-serif;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.user-box:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.user-box h2 {
+    margin: 0 0 1rem;
+    font-size: 1.3rem;
+}
+
+.user-box p {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.35rem 1rem;
+    margin: 0.65rem 0 0;
+    overflow-wrap: anywhere;
+    font-size: 0.95rem;
+}
+
+.user-box p span {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.user-role {
+    padding: 0.15rem 0.65rem;
+    color: var(--teal-dark);
+    background: #e5f3f0;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    text-transform: capitalize;
+}
+
 .organization-form {
     max-width: 42rem;
     display: grid;
@@ -281,7 +334,11 @@ textarea.form-control {
 }
 
 .primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     align-self: start;
+    justify-self: start;
     padding: 0.8rem 1.4rem;
     color: #ffffff;
     background: var(--teal);
@@ -292,13 +349,27 @@ textarea.form-control {
     font-weight: 700;
     cursor: pointer;
     transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+    text-decoration: none;
 }
 
 .primary-button:hover,
 .primary-button:focus-visible {
+    color: #ffffff;
     background: var(--teal-dark);
     transform: translateY(-1px);
     box-shadow: 0 10px 22px rgba(8, 127, 140, 0.2);
+    text-decoration: none;
+}
+
+.home-dashboard-link {
+    margin: 1.75rem 0 0;
+}
+
+.account-form {
+    max-width: 32rem;
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2rem;
 }
 
 .new-org-link {

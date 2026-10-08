@@ -1,0 +1,18 @@
+
+
+<main class="users-page">
+    <h1><%= title %></h1>
+    <p>Manage registered users and their account roles.</p>
+
+    <div class="users-grid">
+        <% users.forEach(user => { %>
+            <article class="user-box">
+                <h2><%= user.name %></h2>
+                <p><span>Email</span><%= user.email %></p>
+                <p><span>Role</span><strong class="user-role"><%= user.role_name %></strong></p>
+            </article>
+        <% }) %>
+    </div>
+</main>
+
+<%- include('partials/footer') %>
