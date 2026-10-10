@@ -6,7 +6,8 @@ import { errorsPage } from './controllers/errors.js';
 import { showUserRegistrationForm, processUserRegistrationForm } from './controllers/users.js';
 import { showProjectDetailsPage, projectsPage, projectValidation, showNewProjectForm, processNewProjectForm, showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
 import { organizationsPage, processNewOrganizationForm, showOrganizationDetailsPage, showNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
-import { showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showAllUsers } from './controllers/users.js';
+import { showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showAllUsers, addUserToProject, DeleteUserFromProject } from './controllers/users.js';
+//import { delimiter } from 'ejs';
 
 const router = express.Router();
 
@@ -55,6 +56,10 @@ router.get('/edit-project/:id', requireLogin, requireRole('admin'), showEditProj
 //Route to handle the edit project form submission
 router.post('/edit-project/:id', requireLogin, requireRole('admin'), processEditProjectForm);
 
+//route to handle the delete project and join project form submission
+router.post('/join-project/:id', requireLogin, addUserToProject)
+router.post('/leave-project/:id', requireLogin, DeleteUserFromProject)
+
 //Route to display the new category form page
 router.get('/new-category', requireLogin, requireRole('admin'), showNewCategoryForm);
 
@@ -81,5 +86,7 @@ router.get('/dashboard', requireLogin, showDashboard);
 
 //Protected users list 
 router.get('/users', requireLogin, requireRole('admin'), showAllUsers);
+
+
 
 export default router;

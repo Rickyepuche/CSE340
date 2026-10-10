@@ -187,9 +187,75 @@ main li a:focus-visible {
     transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
+.dashboard-project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.dashboard-project-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.dashboard-project-card {
+    height: 100%;
+}
+
+.dashboard-project-card h4 {
+    margin: 0 0 0.8rem;
+    color: var(--ink);
+    font-size: 1.15rem;
+    line-height: 1.3;
+}
+
+.dashboard-project-link:hover,
+.dashboard-project-link:focus-visible {
+    color: inherit;
+    text-decoration: none;
+}
+
 .user-box:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow);
+}
+
+.project-membership-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.project-membership-actions form {
+    margin: 0;
+}
+
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.4rem;
+    color: #ffffff;
+    background: var(--coral);
+    border: 1px solid var(--coral);
+    border-radius: 999px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 0.96rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.secondary-button:hover,
+.secondary-button:focus-visible {
+    color: #ffffff;
+    background: #bd563b;
+    border-color: #bd563b;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(217, 108, 77, 0.2);
 }
 
 .user-box h2 {
@@ -576,6 +642,16 @@ footer p {
         width: 3.75rem;
         height: 3.75rem;
     }
+
+    .project-membership-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .project-membership-actions form,
+    .project-membership-actions button {
+        width: 100%;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -584,6 +660,12 @@ footer p {
     }
 
     nav a {
+        transition: none;
+    }
+
+    .user-box,
+    .primary-button,
+    .secondary-button {
         transition: none;
     }
 

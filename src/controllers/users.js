@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { createUser } from '../models/users.js';
-import { authenticateUser, getAllUsers } from '../models/users.js';
+import { authenticateUser, getAllUsers, assignUserToProject, removeUserFromProject, getProjectsOfUser } from '../models/users.js';
 
 const showUserRegistrationForm = (req, res) => {
     res.render('register', { title: 'Register' });
@@ -74,12 +74,17 @@ const requireLogin = (req, res, next) => {
     next();
 }
 
-const showDashboard = (req, res) => {
+const showDashboard = async (req, res) => {
     const user = req.session.user;
+    const userId = user.user_id;
+
+    const projects = await getProjectsOfUser(userId);
+
     res.render('dashboard', { 
         title: 'Dashboard',
         name: user.name,
-        email: user.email
+        email: user.email,
+        projects
     });
 };
 
@@ -115,4 +120,20 @@ const showAllUsers = async (req, res) => {
     res.render('users', { title, users});
 }
 
-export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showAllUsers };
+const addUserToProject = async (req, res) => {
+    const userId = req.session.user.user_id;
+    const projectId = req.params.id;
+
+    await assignUserToProject(userId, projectId);
+    res.redirect('/dashboard');
+}
+
+const DeleteUserFromProject = async (req, res) => {
+    const userId = req.session.user.user_id;
+    const projectId = req.params.id;
+
+    await removeUserFromProject(userId, projectId);
+    res.redirect('/dashboard');
+}
+
+export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showAllUsers, addUserToProject, DeleteUserFromProject };

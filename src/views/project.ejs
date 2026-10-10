@@ -33,6 +33,16 @@
   <% if (user && user.role_name === 'admin') { %>
     <p class="new-org-link"><a href="/edit-project/<%= projectDetails.project_id %>">Edit Project</a></p>
   <% } %>
-  </main>
+  <div class="project-membership-actions">
+    <form action="/join-project/<%= projectDetails.project_id %>" method="post">
+      <button class="primary-button" type="submit">Join Project</button>
+    </form>
+
+    <form action="/leave-project/<%= projectDetails.project_id %>" method="post">
+      <button class="secondary-button" type="submit">Leave Project</button>
+    </form>
+  </div>
+
+</main>
 
 <%- include('partials/footer') %>
