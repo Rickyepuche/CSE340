@@ -4,6 +4,7 @@ import { getProjectDetails, createProject, updateProject } from '../models/proje
 import { getCategoriesByProject } from '../models/categories.js';
 import { getAllOrganizations } from '../models/organizations.js';
 import { body, validationResult } from 'express-validator';
+import { checkUserProjects } from '../models/users.js';
 const NUMBER_OF_UPCOMING_PROJECTS = 7; //Adjust this number as needed
 
 const projectValidation = [
@@ -35,12 +36,14 @@ const projectsPage = async (req, res) => {
 }
 
 const showProjectDetailsPage = async (req, res) => {
-    const projectId = Number(req.params.id)
+    const projectId = req.params.id;
+    const userId = req.session.user.user_id;
     const projectDetails = await getProjectDetails(projectId);
     const projectCategory = await getCategoriesByProject(projectId);
+    const isMember = await checkUserProjects(userId, projectId)
     const title = 'Project Details';
-
-    res.render('project', { title, projectDetails, projectCategory });
+    
+    res.render('project', { title, projectDetails, projectCategory, isMember });
 }
 
 const showNewProjectForm = async (req, res) => {

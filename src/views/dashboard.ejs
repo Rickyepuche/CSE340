@@ -10,17 +10,22 @@
 
     <div class="dashboard-project-grid">
         <% projects.forEach(project => { %>
-            <a class="dashboard-project-link" href="/project/<%= project.project_id %>">
-                <article class="user-box dashboard-project-card">
-                    <h4><%= project.title %></h4>
-                    <p><%= project.project_date %></p>
-                    <p><%= project.location %></p>
-                </article>
-            </a>
+            <div class="dashboard-project-item">
+                <a class="dashboard-project-link" href="/project/<%= project.project_id %>">
+                    <article class="user-box dashboard-project-card">
+                        <h4><%= project.title %></h4>
+                        <p><%= project.project_date %></p>
+                        <p><%= project.location %></p>
+                    </article>
+                </a>
+                <form class="dashboard-project-actions" action="/leave-project/<%= project.project_id %>" method="post">
+                    <button class="secondary-button" type="submit">Leave This Project</button>
+                </form>
+            </div>
         <% }) %>
     </div>
 
-        <p><a href="/projects">Join more Projects</a></p>
+    <p class="dashboard-join-link"><a class="primary-button" href="/projects">Join more projects</a></p>
 
     <% if (user && user.role_name === 'admin') { %>
         <p><a class="primary-button users-page-link" href="/users">Users Page</a></p>

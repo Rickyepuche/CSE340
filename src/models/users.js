@@ -107,4 +107,18 @@ const getProjectsOfUser = async (userId) => {
     return result.rows;
 }
 
-export { createUser, authenticateUser, getAllUsers, assignUserToProject, removeUserFromProject, getProjectsOfUser };
+const checkUserProjects = async (userId, projectId) => {
+    const query =`
+        SELECT EXISTS (
+          SELECT 1
+          FROM users_projects
+          WHERE user_id = $1 AND project_id = $2
+          ) AS is_member;
+    `
+    const queryParams = [userId, projectId];
+    const result = await db.query(query, queryParams);
+
+    return result.rows[0].is_member;
+}
+
+export { createUser, authenticateUser, getAllUsers, assignUserToProject, removeUserFromProject, getProjectsOfUser, checkUserProjects };

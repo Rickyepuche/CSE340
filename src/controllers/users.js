@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { createUser } from '../models/users.js';
-import { authenticateUser, getAllUsers, assignUserToProject, removeUserFromProject, getProjectsOfUser } from '../models/users.js';
+import { authenticateUser, getAllUsers, assignUserToProject, removeUserFromProject, getProjectsOfUser, checkUserProjects } from '../models/users.js';
 
 const showUserRegistrationForm = (req, res) => {
     res.render('register', { title: 'Register' });
@@ -118,15 +118,23 @@ const showAllUsers = async (req, res) => {
     const users = await getAllUsers();
 
     res.render('users', { title, users});
-}
+};
 
 const addUserToProject = async (req, res) => {
     const userId = req.session.user.user_id;
     const projectId = req.params.id;
+    const isMember = await checkUserProjects(userId, projectId);
+
+    if (isMember) {
+        req.flash('error', 'You have already volunteered for this project');
+        return res.redirect(`/project/${projectId}`);
+    }
 
     await assignUserToProject(userId, projectId);
-    res.redirect('/dashboard');
-}
+
+    req.flash('success', 'You have successfully volunteered for this project');
+    res.redirect(`/project/${projectId}`);
+};
 
 const DeleteUserFromProject = async (req, res) => {
     const userId = req.session.user.user_id;
@@ -134,6 +142,6 @@ const DeleteUserFromProject = async (req, res) => {
 
     await removeUserFromProject(userId, projectId);
     res.redirect('/dashboard');
-}
+};
 
 export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showAllUsers, addUserToProject, DeleteUserFromProject };
