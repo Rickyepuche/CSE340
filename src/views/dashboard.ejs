@@ -6,7 +6,10 @@
     <h2>Dashboard</h2>
     <p>Name: <%= name %></p>
     <p>Username: <%= email %></p>
-    <h3>Projects you volunteered for</h3>
+
+    <% if (projects && projects.length > 0) { %>
+        <h3>Projects you volunteered for</h3>
+    <% } %>
 
     <div class="dashboard-project-grid">
         <% projects.forEach(project => { %>
