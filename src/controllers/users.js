@@ -133,7 +133,7 @@ const addUserToProject = async (req, res) => {
     await assignUserToProject(userId, projectId);
 
     req.flash('success', 'You have successfully volunteered for this project!');
-    res.redirect(`/project/${projectId}`);
+    res.redirect('/dashboard');
 };
 
 const DeleteUserFromProject = async (req, res) => {
@@ -141,7 +141,7 @@ const DeleteUserFromProject = async (req, res) => {
     const projectId = req.params.id;
 
     await removeUserFromProject(userId, projectId);
-    res.redirect(`/dashboard`);
+    res.redirect('/dashboard');
 };
 
 export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showAllUsers, addUserToProject, DeleteUserFromProject };
