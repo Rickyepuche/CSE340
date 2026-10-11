@@ -141,7 +141,7 @@ const DeleteUserFromProject = async (req, res) => {
     const projectId = req.params.id;
 
     await removeUserFromProject(userId, projectId);
-    res.redirect(`/project/${projectId}`);
+    res.redirect(`/dashboard`);
 };
 
 export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showAllUsers, addUserToProject, DeleteUserFromProject };
