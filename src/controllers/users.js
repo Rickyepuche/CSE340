@@ -132,7 +132,7 @@ const addUserToProject = async (req, res) => {
 
     await assignUserToProject(userId, projectId);
 
-    req.flash('success', 'You have successfully volunteered for this project');
+    req.flash('success', 'You have successfully volunteered for this project!');
     res.redirect(`/project/${projectId}`);
 };
 
