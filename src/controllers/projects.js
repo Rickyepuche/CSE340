@@ -5,7 +5,7 @@ import { getCategoriesByProject } from '../models/categories.js';
 import { getAllOrganizations } from '../models/organizations.js';
 import { body, validationResult } from 'express-validator';
 import { checkUserProjects } from '../models/users.js';
-const NUMBER_OF_UPCOMING_PROJECTS = 7; //Adjust this number as needed
+const NUMBER_OF_UPCOMING_PROJECTS = 10; //Adjust this number as needed
 
 const projectValidation = [
     body('title')
@@ -107,7 +107,7 @@ const processEditProjectForm = async (req, res) => {
     const projectId = req.params.id;
 
     const {title, description, location, date, organizationId} = req.body;
-    await updateProject(title, description, location, date, organizationId);
+    await updateProject(title, description, location, date, organizationId, projectId);
 
     req.flash('success', 'project updated successfully!');
 

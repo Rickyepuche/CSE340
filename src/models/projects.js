@@ -51,7 +51,9 @@ const getUpcomingProjects = async (number_of_projects) => {
         o.name AS organization_name
       FROM projects p
       JOIN organization o ON p.organization_id = o.organization_id
-      ORDER BY p.project_date ASC
+      ORDER BY
+        CASE WHEN p.project_date >= CURRENT_DATE THEN 0 ELSE 1 END,
+        p.project_date DESC
       LIMIT $1;
     `;
 
@@ -83,7 +85,7 @@ const getProjectDetails = async (id) => {
 
 const createProject = async (title, description, location, date, organizationId) => {
     const query = `
-      INSERT INTO project (title, description, location, date, organization_id)
+      INSERT INTO projects (title, description, location, project_date, organization_id)
       VALUES ($1, $2, $3, $4, $5)
       RETURNING project_id;
     `;
@@ -121,7 +123,7 @@ const updateProject = async (title, description, location, date, organizationId,
     console.log('Updated project with ID:', projectId);
   }
 
-  return result.rows[0].project_Id;
+  return result.rows[0].project_id;
 };
 
 export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails, createProject, updateProject };
