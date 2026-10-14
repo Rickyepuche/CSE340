@@ -74,6 +74,7 @@ const requireLogin = (req, res, next) => {
     next();
 }
 
+
 const showDashboard = async (req, res) => {
     const user = req.session.user;
     const userId = user.user_id;
@@ -136,7 +137,7 @@ const addUserToProject = async (req, res) => {
     res.redirect('/dashboard');
 };
 
-const DeleteUserFromProject = async (req, res) => {
+const deleteUserFromProject = async (req, res) => {
     const userId = req.session.user.user_id;
     const projectId = req.params.id;
 
@@ -144,4 +145,4 @@ const DeleteUserFromProject = async (req, res) => {
     res.redirect('/dashboard');
 };
 
-export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showAllUsers, addUserToProject, DeleteUserFromProject };
+export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showAllUsers, addUserToProject, deleteUserFromProject };

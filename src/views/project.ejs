@@ -36,17 +36,25 @@
   <% if (user && user.role_name === 'admin') { %>
     <p class="new-org-link"><a href="/edit-project/<%= projectDetails.project_id %>">Edit Project</a></p>
   <% } %>
-  <div class="project-membership-actions">
 
-  <% if (isMember) { %>
-    <p>You volunteered For this project</p>
-    <form action="/leave-project/<%= projectDetails.project_id %>" method="post">
-      <button class="secondary-button" type="submit">Leave This Project</button>
-    </form>
-  <% } else { %>
-    <form action="/join-project/<%= projectDetails.project_id %>" method="post">
-      <button class="primary-button" type="submit">volunteer For Project</button>
-    </form>
+  
+
+
+  <% if (user && isMember) { %>
+    <div class="project-membership-actions">
+      <p>You volunteered For this project</p>
+      <form action="/leave-project/<%= projectDetails.project_id %>" method="post">
+        <button class="secondary-button" type="submit">Leave This Project</button>
+      </form>
+    </div>
+  <% } %>
+
+  <% if (user && !isMember) { %>
+    <div class="project-membership-actions">
+      <form action="/join-project/<%= projectDetails.project_id %>" method="post">
+        <button class="primary-button" type="submit">volunteer For Project</button>
+      </form>
+    </div>
   <% } %>
     
   </div>

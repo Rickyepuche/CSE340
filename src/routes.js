@@ -6,24 +6,24 @@ import { errorsPage } from './controllers/errors.js';
 import { showUserRegistrationForm, processUserRegistrationForm } from './controllers/users.js';
 import { showProjectDetailsPage, projectsPage, projectValidation, showNewProjectForm, processNewProjectForm, showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
 import { organizationsPage, processNewOrganizationForm, showOrganizationDetailsPage, showNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
-import { showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showAllUsers, addUserToProject, DeleteUserFromProject } from './controllers/users.js';
+import { showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showAllUsers, addUserToProject, deleteUserFromProject } from './controllers/users.js';
 //import { delimiter } from 'ejs';
 
 const router = express.Router();
 
 router.get('/', homePage);
-router.get('/projects', requireLogin, projectsPage);
-router.get('/categories', requireLogin, categoriesPage);
-router.get('/organizations', requireLogin, organizationsPage);
+router.get('/projects', projectsPage);
+router.get('/categories', categoriesPage);
+router.get('/organizations', organizationsPage);
 
 // Route for organization details page
 router.get('/organization/:id', requireLogin, showOrganizationDetailsPage);
 
 //route for project details page
-router.get('/project/:id', requireLogin, showProjectDetailsPage);
+router.get('/project/:id', showProjectDetailsPage);
 
 //route for category details page
-router.get('/category/:id', requireLogin, showCategoryDetails)
+router.get('/category/:id', showCategoryDetails)
 
 // error-handling routes
 router.get('/test-error', errorsPage);
@@ -58,7 +58,7 @@ router.post('/edit-project/:id', requireLogin, requireRole('admin'), processEdit
 
 //route to handle the delete project and join project form submission
 router.post('/join-project/:id', requireLogin, addUserToProject)
-router.post('/leave-project/:id', requireLogin, DeleteUserFromProject)
+router.post('/leave-project/:id', requireLogin, deleteUserFromProject)
 
 //Route to display the new category form page
 router.get('/new-category', requireLogin, requireRole('admin'), showNewCategoryForm);

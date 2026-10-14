@@ -32,18 +32,21 @@ const projectsPage = async (req, res) => {
     const projects = await getUpcomingProjects(NUMBER_OF_UPCOMING_PROJECTS); 
     const title = ' Upcoming Service Projects';
 
-    res.render('projects', { title, projects });   
+    res.render('projects', { title, projects, });   
 }
 
 const showProjectDetailsPage = async (req, res) => {
     const projectId = req.params.id;
-    const userId = req.session.user.user_id;
     const projectDetails = await getProjectDetails(projectId);
     const projectCategory = await getCategoriesByProject(projectId);
-    const isMember = await checkUserProjects(userId, projectId)
+    let isMember = false;
     const title = 'Project Details';
+    if (req.session && req.session.user) {
+        const userId = req.session.user.user_id;
+        isMember = await checkUserProjects(userId, projectId);  
+    }
     
-    res.render('project', { title, projectDetails, projectCategory, isMember });
+    res.render('project', { title, projectDetails, projectCategory, isMember});
 }
 
 const showNewProjectForm = async (req, res) => {
